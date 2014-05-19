@@ -1,3 +1,13 @@
+CT: Compressive Tracking
+-------------------------------------------------------------------------------
+
+Compressive Tracking is part of the [Visual Object Tracking Repository](https://github.com/gnebehay/VOTR),
+which aims at providing a central repository for state-of-the-art tracking algorithms that are freely available.
+The source code for this tracker was obtained from its [project website](http://www4.comp.polyu.edu.hk/~cslzhang/CT/CT.htm)
+and extended by a challenge mode.
+The following description was copied literally from the original author.
+
+README
 ----------------------------------------------------------------------------------------------------------------------------------------------
 * C++ demo for "Real-Time Compressive Tracking," Kaihua Zhang, Lei Zhang, Ming-Hsuan Yang, ECCV 2012.
 * Author: Yang Xian
