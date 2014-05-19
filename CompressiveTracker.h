@@ -29,8 +29,8 @@ private:
 	int featureMinNumRect;
 	int featureMaxNumRect;
 	int featureNum;
-	vector<vector<Rect>> features;
-	vector<vector<float>> featuresWeight;
+	vector<vector<Rect> > features;
+	vector<vector<float> > featuresWeight;
 	int rOuterPositive;
 	vector<Rect> samplePositiveBox;
 	vector<Rect> sampleNegativeBox;

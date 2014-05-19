@@ -31,8 +31,8 @@ void CompressiveTracker::HaarFeature(Rect& _objectBox, int _numFeature)
   -_numFeature: total number of features.The default is 50.
 */
 {
-	features = vector<vector<Rect>>(_numFeature, vector<Rect>());
-	featuresWeight = vector<vector<float>>(_numFeature, vector<float>());
+	features = vector<vector<Rect> >(_numFeature, vector<Rect>());
+	featuresWeight = vector<vector<float> >(_numFeature, vector<float>());
 	
 	int numRect;
 	Rect rectTemp;
