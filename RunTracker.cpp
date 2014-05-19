@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "CompressiveTracker.h"
+#include "vot.hpp"
 
 using namespace cv;
 using namespace std;
@@ -49,18 +50,48 @@ int main(int argc, char * argv[])
 
 	char tmpDirPath[MAX_PATH+1];
 	
+	// CT framework
+	CompressiveTracker ct;
+	
+	Mat frame;
+	Mat grayImg;
+
 	Rect box; // [x y width height] tracking position
+	
+	//Check if --challenge was passed as an argument
+	bool challengeMode = false;
+	for (int i = 1; i < argc; i++) {
+		if (strcmp("--challenge", argv[i]) == 0) {
+			challengeMode = true;
+		}
+	}
+
+	if (challengeMode) {
+		//load region, images and prepare for output
+		VOT vot("region.txt", "images.txt", "output.txt");
+
+		Rect box = vot.getInitRectangle();
+		
+		//output init also bbox
+		vot.outputBoundingBox(box);
+
+		vot.getNextImage(frame);
+		cvtColor(frame, grayImg, CV_RGB2GRAY);
+
+		ct.init(grayImg, box);    
+
+		while (vot.getNextImage(frame) == 1){
+			cvtColor(frame, grayImg, CV_RGB2GRAY);
+			ct.processFrame(grayImg, box);// Process frame
+			vot.outputBoundingBox(box);
+		}
+		return 0;
+	}
 
 	vector <string> imgNames;
     
 	readConfig(conf,imgFilePath,box);
 	readImageSequenceFiles(imgFilePath,imgNames);
-
-	// CT framework
-	CompressiveTracker ct;
-
-	Mat frame;
-	Mat grayImg;
 
 	sprintf(tmpDirPath, "%s/", imgFilePath);
 	imgNames[0].insert(0,tmpDirPath);
