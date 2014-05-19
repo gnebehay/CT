@@ -16,13 +16,17 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <vector>
 
+#ifndef MAX_PATH
+#define MAX_PATH 4096
+#endif
+
 using std::vector;
 using namespace cv;
 //---------------------------------------------------
 class CompressiveTracker
 {
 public:
-	CompressiveTracker(void);
+    CompressiveTracker(void);
 	~CompressiveTracker(void);
 
 private:

@@ -134,6 +134,7 @@ void readConfig(char* configFileName, char* imgFilePath, Rect &box)
 	
 }
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 void readImageSequenceFiles(char* imgFilePath,vector <string> &imgNames)
 {	
 	imgNames.clear();
@@ -155,3 +156,9 @@ void readImageSequenceFiles(char* imgFilePath,vector <string> &imgNames)
 	}
 	FindClose(h);	
 }
+#else
+void readImageSequenceFiles(char* imgFilePath,vector <string> &imgNames)
+{	
+	printf("Not implemented on non-Windows systems\n");
+}
+#endif
